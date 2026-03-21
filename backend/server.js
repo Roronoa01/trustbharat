@@ -10,7 +10,10 @@ app.use(cors({
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("TrustBharat Backend Running... 🚀");
+  res.json({
+    message:"TrustBharat Backend Connected 🚀",
+    status : "success"
+  });
 });
 
 const PORT = 8000;
