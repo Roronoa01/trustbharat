@@ -8,6 +8,10 @@ const userRoutes = require("./routes/userRoutes");
 
 const app = express();
 
+const serviceRoutes = require("./routes/serviceRoutes");
+
+
+
 // ✅ Middleware FIRST
 app.use(cors({
   origin: "http://localhost:5173"
@@ -36,3 +40,5 @@ const PORT = 8000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+app.use("/api/services", serviceRoutes);
