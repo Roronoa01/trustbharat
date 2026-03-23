@@ -14,12 +14,19 @@ function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+   
 
     try {
       const res = await axios.post(
         "http://localhost:8000/api/users/register",
         form
       );
+
+      
+       console.log("FULL RESPONSE:", res.data);
+
+        localStorage.setItem("token", res.data.token);
+        
 
       alert(res.data.message);
     } catch (err) {

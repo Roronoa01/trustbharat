@@ -1,6 +1,6 @@
 const Service = require("../models/Service");
 
-const createService = async (req, res) => {
+const addService = async (req, res) => {
   try {
     const { title, description, location } = req.body;
 
@@ -21,4 +21,15 @@ const createService = async (req, res) => {
   }
 };
 
-module.exports = { createService };
+const getServices = async (req, res) => {
+  try {
+    const services = await Service.find().populate("user", "name");
+
+    res.json(services);
+
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+module.exports = { addService, getServices };

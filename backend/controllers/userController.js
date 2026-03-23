@@ -25,9 +25,22 @@ const registerUser = async (req, res) => {
     });
 
     await user.save();
+     // 🔥 CREATE TOKEN
+    const token = jwt.sign(
+      { id: user._id },
+      "secretkey", // later we will move to .env
+      { expiresIn: "7d" }
+    );
+
+    // ✅ SEND TOKEN
+    res.json({
+      message: "User registered successfully",
+      token: token
+    });
 
 
-    res.json({ message: "User registered successfully" });
+   
+console.log(res.data);
 
   } catch (error) {
     console.log(error); // 👈 important for debugging
